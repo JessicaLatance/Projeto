@@ -5,24 +5,24 @@
 
 :root {
   --text-color: white;
-  --bg-url: url(./assets/assets/bg-mobile.jpg);
+  --bg-url: url(./assets/bg-mobile.jpg);
   --stroke-color: rgba(255, 255, 255, 0.5);
   --surface-color: rgba(255, 255, 255, 0.1);
   --surface-color-hover:rgba(255, 255, 255, 0.5);
   --highlight-color: rgba(255, 255, 255, 0.2);
-  --switch-bg-url: url(./assets/assets/moon-stars.svg);
+  --switch-bg-url: url(./assets/moon-stars.svg);
 
 
 }
 
 .light {
   --text-color: black;
-  --bg-url: url(./assets/assets/bg-mobile-light.jpg);
+  --bg-url: url(./assets/bg-mobile-light.jpg);
   --stroke-color: rgba(0, 0, 0, 0.5);
   --surface-color: rgba(0, 0, 0, 0.05);
   --surface-color-hover:rgba(0, 0, 0, 0.02); 
   --highlight-color: rgba(0, 0, 0, 0.2);
-   --switch-bg-url: url(./assets/assets/sun.svg);
+   --switch-bg-url: url(./assets/sun.svg);
 }
 
 body {
@@ -37,7 +37,8 @@ background: var(--bg-url) no-repeat top center/cover;
 }
 
 #container {
-width: 360px;
+width: 100%;
+max-width: 588px;
 height: 720px;
 padding: 24px;
 
