@@ -1,4 +1,5 @@
-*{margin: 0;
+* {
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
@@ -7,12 +8,10 @@
   --text-color: white;
   --bg-url: url(./assets/bg-mobile.jpg);
   --stroke-color: rgba(255, 255, 255, 0.5);
-  --surface-color: rgba(255, 255, 255, 0.1);
-  --surface-color-hover:rgba(255, 255, 255, 0.5);
+  --surface-color: rgba(255, 255, 255, 0.05);
+  --surface-color-hover:rgba(255, 255, 255, 0.02);
   --highlight-color: rgba(255, 255, 255, 0.2);
   --switch-bg-url: url(./assets/moon-stars.svg);
-
-
 }
 
 .light {
@@ -21,7 +20,7 @@
   --stroke-color: rgba(0, 0, 0, 0.5);
   --surface-color: rgba(0, 0, 0, 0.05);
   --surface-color-hover:rgba(0, 0, 0, 0.02); 
-  --highlight-color: rgba(0, 0, 0, 0.2);
+  --highlight-color: rgba(0, 0, 0, 0.1);
    --switch-bg-url: url(./assets/sun.svg);
 }
 
@@ -37,28 +36,23 @@ background: var(--bg-url) no-repeat top center/cover;
 /*viewport height (vh) significa tudo que vemos na altura da janela de visualização (pagina), nesse caso
 estamos colocando um vh de 100vd para que ela ajuste a altura do dispositivo e coloque background aonde estava faltando*/
 height: 100vh;
-
 }
+
+body * {
+ font-family: "Inter", sans-serif;
+ color: var(--text-color);
+}
+
 
 #container {
 width: 100%;
 max-width: 588px;
-height: 720px;
-padding: 24px;
+margin: 56px auto 0px;
+padding: 0 24px;
+/*border: 1px solid white; a borda é para ter um parametro de como os elementos/caixas vao ficar visualmente*/
+color: var(--text-color);
 
-/*
-border: 1px solid white; a borda é para ter um parametro de como os elementos/caixas vao ficar visualmente*/
-
-  color: var(--text-color);
-  margin: 56px auto 0px;
-   
 }
-
-body * {
- font-family: Inter, sans-serif;;
- color: var(--text-color);
-}
-
 
 /*profile*/
 #profile {
@@ -77,36 +71,54 @@ body * {
  }
 
  /*switch*/
- 
-#switch {
-  position: relative; /*ele vai relativizar o absoluto do switch button, que faz com que 
-  qualquer coisa que estiver dentro do abosluto fique certinho dentro dele e não "espalhado" 
-  pela "pagina".*/
-  width: 64px;
-  margin: 4px auto;
+  #switch {
+    position: relative; /*ele vai relativizar o absoluto do switch button, que faz com que 
+    qualquer coisa que estiver dentro do abosluto fique certinho dentro dele e não "espalhado" 
+    pela "pagina".*/
+    width: 64px;
+    margin: 4px auto;
 
-}
-
-
- #switch button{
-  width: 32px;
-  height: 32px;
-  background: white var(--switch-bg-url) no-repeat center;
-  border: none;
-  border-radius:50%;
-  position: absolute;/*automaticamente faz uma sobreposição de camadas*/
-  top: 50%; 
-  transform: translateY(-50%); /*faz com que centralize horizontalmente o eixo Y*/
-  left: 0;
-  z-index: 1;
-
- }
+  }
 
 
- .light #switch button{
-  right: 0;
-  left: initial;
- }
+  #switch button {
+    width: 32px;
+    height: 32px;
+    background: white var(--switch-bg-url) no-repeat center;
+    border: 0;
+    border-radius:50%;
+    position: absolute;/*automaticamente faz uma sobreposição de camadas*/
+    top: 50%; 
+    left: 0;
+    z-index: 1;
+    transform: translateY(-50%); /*faz com que centralize horizontalmente o eixo Y*/
+    
+    animation: slide-back 0.2s;
+    /*nesse caso nao preciso do "forwards" porque o meu final "to" do "slide-back"
+     já é left 0 e no meu padrao que fica no "left: 0" do "switch button" também é letf: 0
+     então colocar o forwards nessa linha seria redundancia.*/
+  }
+
+
+  .light #switch button{
+    /*antes estava com essa programação:
+    right: 0;
+    left: initial;*/
+
+    /*porém para a animação funcionar, temos que mudar algumas coisas e agora a programação
+    passa a ser:*/
+    animation: slide-in 0.4s forwards;
+    /*essa linha significa que quando eu clicar no botao, esse light vai entrar no html, quando ele entrar, o CSS
+    vai interpretar essa animation e vai aplicar o slide-in que vai fazer o lef de 0 a 50% em 0.4 segundos.
+    a função/regra "forwards" vai manter as propriedades finais do animation, ou seja ela vai levar o left
+    de 0 a 50%, quando chegar no final ele vai manter as propriedades finais que foram feitas no "key-frames
+    slide-in" na parte do "to".*/
+
+  }
+
+  #switch button:hover {
+    outline: 8px solid var(--highlight-color);
+  }
 
 #switch span{
   display: block;
@@ -117,12 +129,9 @@ body * {
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 9999px;
-
 }
 
-
-
- /* LINK */
+/* LINK */
  ul {
   list-style: none;
   display: flex;
@@ -151,10 +160,8 @@ body * {
   ele vai fazer a transição.
   ex: transition: all 0.5s; - siginifaca que ele vai transicionar todos em 5 segundos quando ele 
   carregar a pagina*/
-
   transition: background 0.2s;
-
- }
+}
 
  ul li a:hover /*pseudo-selector - nele aplica as coisas quando passa o mouse em cima*/ {
 
@@ -169,7 +176,7 @@ body * {
   justify-content: center;
   padding: 24px 0;
   font-size: 24px;
- 
+
 }
 
 #social-links a{
@@ -177,14 +184,14 @@ body * {
   align-items: center;
   justify-content: center;
   padding: 16px;
-  transition: backgroud 0.2s;
+  transition: background 0.2s;
   border-radius: 50%;
   
   
 }
 
 #social-links a:hover{
-  background: var(--hightlight-color);
+  background: var(--highlight-color);
   padding: 16px;
 }
 
@@ -199,12 +206,43 @@ footer{
 /*no CSS tudo que começa com @ é um at-rule*/
 /*colocamos uma media queries aqui para que a imagem do fundo(background) se modifique e se ajuste ao tamanho
 da pagina conforme o dipositivo*/
-@media(min-widht: 700px){
+@media(min-width: 700px){
   :root {
     --bg-url: url(./assets/bg-desktop.jpg);
   }
-  .light {
-    --bg-url: url (./assests/bg-light.jpg);
+  .light {    
+    --bg-url: url(./assets/bg-light.jpg);
     /*a @media só funciona se tiver a linha de <meta name="viewport"...> no html*/
   }
+
+  /*animação - vamos usar uma at-rule que vai definir a animação
+  depois de colocar a at-rule, tem que dar um nome para ela, nesse caso, foi dado o noe de slide-in, pois ele vai 
+  fazer o slide do botao... vai fazer ele deslizar mais suavemente.
+  Nesse botão, foi feito um left de 0 e quando muda pro light ele vai para right 0.
+  Mas para essa animação funcionar melhor, vamos mudar o left de 0 para 50%. Com isso, o botão já vai automaticamente
+  para o outro lado.*/
 }
+
+    @keyframes slide-in {
+    /*aqui está falando de onde ele vai começar e aonde ele vai parar, nesse caso, ele começa 
+    no left 0 e termina no letf 50%*/
+    from { 
+      left: 0;
+      }
+    to {
+      left: 50%;
+    }
+
+    /*para fazer essa movimentação precisa marcar em que momento isso vai acontecer, 
+    com isso precisamos alterar o ligth switch button*/
+    }
+
+  @keyframes slide-back {
+    from {
+      left: 50%;
+    }
+    to {
+      left: 0;
+    }
+  }
+  
